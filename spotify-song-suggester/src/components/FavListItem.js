@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 import styled from "styled-components";
 
@@ -36,13 +36,16 @@ const FavListItemDiv = styled.div`
     }
 `;
 export default function FavListItem(props) {
+    const [isOpen, setIsOpen] = useState(false)
 
-
-
+    const changeIsOpen = (event) => {
+        event.preventDefault();
+        setIsOpen(!isOpen);
+    }
     return (
         <>
             <FavListItemDiv>
-                <div onClick={}>
+                <div onClick={changeIsOpen}>
                     <PlayCircleOutlineIcon />
                 </div>
                 <span className="slot1">{props.title}</span>
@@ -50,7 +53,7 @@ export default function FavListItem(props) {
                 <span className="slot3">{props.tempo}</span>
                 <span className="slot4">{props.duration}</span>
             </FavListItemDiv>
-            <iframe className="iframe" src={`https://embed.spotify.com/?uri=spotify:track:${props.id}`} width="400px" height="80px"></iframe>
+            <iframe id={props.trackid} className={(isOpen) ? "dodisplay" : "dontdisplay"} src={`https://embed.spotify.com/?uri=spotify:track:${props.trackid}`} width="400px" height="100px"></iframe>
         </>
     )
 }
