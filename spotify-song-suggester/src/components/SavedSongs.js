@@ -12,6 +12,7 @@ export default function SavedSongs(props) {
     })
 
     const filterSelect = (event) => {
+        event.preventDefault();
         setSortFields({
             title: false,
             artist: false,
@@ -59,7 +60,7 @@ export default function SavedSongs(props) {
     return (
         <div>
             <SideNav></SideNav>
-            <SortField></SortField>
+            <SortField filterSelect={filterSelect}></SortField>
             {favSongArray}
         </div>
     )
