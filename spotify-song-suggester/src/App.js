@@ -26,14 +26,14 @@ function App() {
   const [data, setData] = useState([]);
   const [songs, setSongs] = useState([]);
   const [artitsts, setArtitsts] = useState([]);
-  const [favorites, setFavorites] = useState({})
+  const [favorites, setFavorites] = useState([])
 
   useEffect(() => {
     axios
-      .get()
+      .get("https:spotify-song-suggester-app.com/user/songs")
       .then(res => {
         console.log("axios response", res);
-        // setData(res.somethingOrOther);
+        // setFavorites(res.data);
       })
       .catch(err => {
         console.log("axios error", err);
@@ -52,7 +52,7 @@ function App() {
       <Route path="/search/songs" render={(props) => <SongsSearchDisplay {...props} />}></Route>
       <Route exact path="/search/artists" render={(props) => <ArtistsSearchDisplay {...props} />}></Route>
       <Route exact path="/search/artists/songs" render={(props) => <ArtistFullWork {...props} />}></Route>
-      <Route path="/saved-songs" render={(props) => <SavedSongs {...props} />}></Route>
+      <Route path="/saved-songs" render={(props) => <SavedSongs {...props} favorites={favorites} />}></Route>
       <Route path="/search-history" render={(props) => <SearchHistory {...props} />}></Route>
       <Route path="/export-to-spotify" render={(props) => <ExportToSpotify {...props} />}></Route>
     </div>

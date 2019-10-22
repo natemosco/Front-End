@@ -32,15 +32,12 @@ const DashboardDiv = styled.div`
 `;
 
 export default function SearchDashboard(props) {
-    // let { songs, artists } = props;
+    // let { songs } = props;
     // let songsArray = [];
-    // let artistsArray = [];
-    // for (let i = 0; i < songs.length || i < 8; i++) {
+    // for (let i = 0; i < songs.length || i < 6; i++) {
     //     songsArray.push(<SongCard key={i} info={songs[i]} />)
     // }
-    // for (let i = 0; i < artists.length || i < 8; i++) {
-    //     songsArray.push(<ArtistCard key={i + 99} info={songs[i]} />)
-    // }
+
 
     return (
         <DashboardDiv>
@@ -49,7 +46,7 @@ export default function SearchDashboard(props) {
             <section className="songs-preview">
                 <div className="search-title">
                     <h3>Songs</h3>
-                    <Link to="/search/songs"><p>SEE ALL</p></Link>
+                    {/* <Link to="/search/songs"><p>SEE ALL</p></Link> */}
                 </div>
                 {/* {songsArray} */}
                 <iframe src="https://embed.spotify.com/?uri=spotify:track:4aX4Oycsk1fhHIee1zqsDe" width="400px" height="100px"></iframe>
@@ -61,15 +58,12 @@ export default function SearchDashboard(props) {
             </section>
             <section className="artists-preview">
                 <div className="search-title">
-                    <h3>Artists</h3>
-                    <Link to="/search/artists"> <p>SEE ALL</p></Link>
+                    <h3>Song Graph</h3>
+                    {/* <Link to="/search/artists"> <p>SEE ALL</p></Link> */}
                 </div>
                 {/* {artistsArray} */}
-                <iframe src="https://embed.spotify.com/?uri=spotify:track:4aX4Oycsk1fhHIee1zqsDe" width="400px" height="100px"></iframe>
-                <iframe src="https://embed.spotify.com/?uri=spotify:track:4aX4Oycsk1fhHIee1zqsDe" width="400px" height="100px"></iframe>
-                <iframe src="https://embed.spotify.com/?uri=spotify:track:4aX4Oycsk1fhHIee1zqsDe" width="400px" height="100px"></iframe>
-                <iframe src="https://embed.spotify.com/?uri=spotify:track:4aX4Oycsk1fhHIee1zqsDe" width="400px" height="100px"></iframe>
-                <iframe src="https://embed.spotify.com/?uri=spotify:track:4aX4Oycsk1fhHIee1zqsDe" width="400px" height="100px"></iframe>
+                <br />
+                <h2>Graph for each clicked song pops up <br />here when we click on each song</h2>
 
             </section>
         </DashboardDiv>
