@@ -33,7 +33,7 @@ function Copyright() {
 
 function validator(props) {
     axios
-        .post()
+        .post("https:spotify-song-suggester-app.com/register")
         .then(res => {
             console.log("login axios response", res)
             localStorage.setItem("token", res.data.token)
