@@ -26,37 +26,41 @@ export default function SavedSongs(props) {
 
     useEffect(() => {
         if (sortFields.title) {
-            favSongArray = favorites.map((fav) => {
-                <FavListItem fav={fav}></FavListItem>
+            let sortedTitleArray = [];
+            sortedTitleArray = favorites.sort((a, b) => (a.title > b.title) ? 1 : -1).map((fav, index) => {
+                <FavListItem key={index} fav={fav} />
             })
+            favSongArray = sortedTitleArray;
         }
         else if (sortFields.artist) {
-            favSongArray = favorites.map((fav) => {
-                <FavListItem fav={fav}></FavListItem>
+            let sortedArtistArray = [];
+            sortedArtistArray = favorites.sort((a, b) => (a.artist > b.artist) ? 1 : -1).map((fav, index) => {
+                <FavListItem key={index} fav={fav} />
             })
+            favSongArray = sortedArtistArray;
         }
         else if (sortFields.duration) {
-
+            let sortedDurationArray = [];
+            sortedDurationArray = favorites.sort((a, b) => (a.artist > b.artist) ? 1 : -1).map((fav, index) => {
+                <FavListItem key={index} fav={fav} />
+            })
+            favSongArray = sortedDurationArray;
         }
         else if (sortFields.tempo) {
-
+            let sortedTempoArray = [];
+            sortedTempoArray = favorites.sort((a, b) => (a.artist > b.artist) ? 1 : -1).map((fav, index) => {
+                <FavListItem key={index} fav={fav} />
+            })
+            favSongArray = sortedTempoArray;
         }
     }, [sortFields])
 
     return (
         <div>
             <SideNav></SideNav>
-
             <SortField></SortField>
-
             {favSongArray}
-
         </div>
     )
 }
 
-//SortField
-
-<title>             Artist              Duration     Tempo
-
-{/* Fa */}
