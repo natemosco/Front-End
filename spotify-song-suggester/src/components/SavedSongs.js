@@ -3,60 +3,57 @@ import SideNav from "./SideNav";
 
 
 export default function SavedSongs(props) {
-    const [sortFields, setSortFields] = useState({
-        title: true,
-        artist: false,
-        duration: false,
-        tempo: false
-    })
+	const [sortFields, setSortFields] = useState({
+		title: true,
+		artist: false,
+		duration: false,
+		tempo: false
+	})
 
-    const filterSelect = (event) => {
-        setSortFields({
-            title: false,
-            artist: false,
-            duration: false,
-            tempo: false,
-            [event.target.id]: true
-        })
-    }
-
-
-    let favSongArray = [];
+	const filterSelect = (event) => {
+		setSortFields({
+			title: false,
+			artist: false,
+			duration: false,
+			tempo: false,
+			[event.target.id]: true
+		})
+	}
 
 
-    useEffect(() => {
-        if (sortFields.title) {
-            favSongArray = favorites.map((fav) => {
-                <FavListItem fav={fav}></FavListItem>
-            })
-        }
-        else if (sortFields.artist) {
-            favSongArray = favorites.map((fav) => {
-                <FavListItem fav={fav}></FavListItem>
-            })
-        }
-        else if (sortFields.duration) {
+	let favSongArray = [];
 
-        }
-        else if (sortFields.tempo) {
 
-        }
-    }, [sortFields])
+	useEffect(() => {
+		if (sortFields.title) {
+			favSongArray = favorites.map((fav) => {
+				<FavListItem fav={fav}></FavListItem>
+			})
+		}
+		else if (sortFields.artist) {
+			favSongArray = favorites.map((fav) => {
+				<FavListItem fav={fav}></FavListItem>
+			})
+		}
+		else if (sortFields.duration) {
 
-    return (
-        <div>
-            <SideNav></SideNav>
+		}
+		else if (sortFields.tempo) {
 
-            <SortField></SortField>
+		}
+	}, [sortFields])
 
-            {favSongArray}
+	return (
+		<div>
+			<SideNav></SideNav>
 
-        </div>
-    )
+			<SortField></SortField>
+
+			{favSongArray}
+
+		</div>
+	)
 }
 
 //SortField
 
-<title>             Artist              Duration     Tempo
-
-{/* Fa */}
