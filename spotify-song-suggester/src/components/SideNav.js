@@ -1,5 +1,4 @@
-// import SignUp from "./SignUp";
-
+import { Link } from "react-router-dom";
 import React from 'react';
 import SearchBar from "./SearchBar";
 
@@ -128,11 +127,13 @@ export default function SideNav(props) {
                 </div>
                 <Divider />
                 <List>
-                    {['Home', 'Moods', 'Saved Songs', 'Recent Searches', 'Export to Spotify'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{iconArray[index]}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
+                    {[{ name: 'Home', link: "/home" }, { name: 'Moods', link: "/moods" }, { name: 'Saved Songs', link: "/saved-songs" }, { name: 'Recent Searches', link: "/search-history" }, { name: 'Export to Spotify', link: "/export-to-spotify" }].map((text, index) => (
+                        <Link to={text.link}>
+                            <ListItem button key={text}>
+                                <ListItemIcon>{iconArray[index]}</ListItemIcon>
+                                <ListItemText primary={text.name} />
+                            </ListItem>
+                        </Link>
                     ))}
                 </List>
 
