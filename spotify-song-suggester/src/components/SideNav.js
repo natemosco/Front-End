@@ -123,7 +123,7 @@ export default function SideNav(props) {
                 }}
             >
                 <div className={classes.drawerHeader}>
-                    <SearchBar {...props} setSongs={props.setSongs}></SearchBar>
+                    <SearchBar {...props} setSongs={props.setSongs} recommendedIsChecked={props.recommendedIsChecked} setRecs={props.setRecs}></SearchBar>
                 </div>
                 <Divider />
                 <List>

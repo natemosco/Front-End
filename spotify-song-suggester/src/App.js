@@ -40,6 +40,8 @@ function App() {
 
 	const [data, setData] = useState([]);
 	const [songs, setSongs] = useState([]);
+	const [recs, setRecs] = useState([]);
+	const [recommendedIsChecked, setRecommendedIsChecked] = useState(false);
 	const [favorites, setFavorites] = useState([{ "artist": "Antonio Vivaldi", "id": "5N82c9RY2k4VeAel1pl5bJ", "large_image": "https://i.scdn.co/image/ab67616d0000b27325327b51212e48eecc13a39f", "med_image": "https://i.scdn.co/image/ab67616d00001e0225327b51212e48eecc13a39f", "small_image": "https://i.scdn.co/image/ab67616d0000485125327b51212e48eecc13a39f", "song_name": "Four Seasons op.8 (1987 Digital Remaster), Summer: Presto", "uri": "spotify:track:5N82c9RY2k4VeAel1pl5bJ" },
 	{ "artist": "Jacques Offenbach", "id": "1ntwYN2nT0Dl3c8lne15ii", "large_image": "https://i.scdn.co/image/ab67616d0000b273aaedcd61fea6d0764fbbdcfd", "med_image": "https://i.scdn.co/image/ab67616d00001e02aaedcd61fea6d0764fbbdcfd", "small_image": "https://i.scdn.co/image/ab67616d00004851aaedcd61fea6d0764fbbdcfd", "song_name": "Can Can", "uri": "spotify:track:1ntwYN2nT0Dl3c8lne15ii" },
 	{ "artist": "Antonio Vivaldi", "id": "3qwVqJyXKNiPZLz9VBMd6r", "large_image": "https://i.scdn.co/image/ab67616d0000b27381106b7ade8ee85b56545f71", "med_image": "https://i.scdn.co/image/ab67616d00001e0281106b7ade8ee85b56545f71", "small_image": "https://i.scdn.co/image/ab67616d0000485181106b7ade8ee85b56545f71", "song_name": "The Four Seasons, Violin Concerto No. 2 in G Minor, RV 315 \"Summer\": III. Presto", "uri": "spotify:track:3qwVqJyXKNiPZLz9VBMd6r" },
@@ -70,15 +72,15 @@ function App() {
 
 			<Route exact path="/" render={(props) => <SignIn {...props} />}></Route>
 			<Route exact path="/signup" render={(props) => <SignUp {...props} />}></Route>
-			<Route path="/home" render={(props) => <Home {...props} setSongs={setSongs} />}></Route>
-			<Route exact path="/search" render={(props) => <SearchDashboard {...props} songs={songs} setSongs={setSongs} />}></Route>
+			<Route path="/home" render={(props) => <Home {...props} setSongs={setSongs} recommendedIsChecked={recommendedIsChecked} setRecs={setRecs} />}></Route>
+			<Route exact path="/search" render={(props) => <SearchDashboard {...props} songs={songs} setSongs={setSongs} recommendedIsChecked={recommendedIsChecked} setRecs={setRecs} recs={recs} />}></Route>
 			{/* <Route path="/search/songs" render={(props) => <SongsSearchDisplay {...props} />}></Route> */}
 			{/* <Route exact path="/search/artists" render={(props) => <ArtistsSearchDisplay {...props} />}></Route> */}
 			{/* <Route exact path="/search/artists/songs" render={(props) => <ArtistFullWork {...props} setSongs={setSongs}/>}></Route> */}
-			<Route path="/saved-songs" render={(props) => <SavedSongs {...props} favorites={favorites} setSongs={setSongs} />}></Route>
-			<Route path="/search-history" render={(props) => <SearchHistory {...props} setSongs={setSongs} />}></Route>
-			<Route path="/moods" render={(props) => <Moods {...props} setSongs={setSongs} />}></Route>
-			<Route path="/export-to-spotify" render={(props) => <ExportToSpotify {...props} setSongs={setSongs} />}></Route>
+			<Route path="/saved-songs" render={(props) => <SavedSongs {...props} favorites={favorites} setSongs={setSongs} setRecommendedIsChecked={setRecommendedIsChecked} recommendedIsChecked={recommendedIsChecked} setRecs={setRecs} />}></Route>
+			<Route path="/search-history" render={(props) => <SearchHistory {...props} setSongs={setSongs} recommendedIsChecked={recommendedIsChecked} setRecs={setRecs} />}></Route>
+			<Route path="/moods" render={(props) => <Moods {...props} setSongs={setSongs} recommendedIsChecked={recommendedIsChecked} setRecs={setRecs} />}></Route>
+			<Route path="/export-to-spotify" render={(props) => <ExportToSpotify {...props} setSongs={setSongs} recommendedIsChecked={recommendedIsChecked} setRecs={setRecs} />}></Route>
 		</div>
 	);
 }

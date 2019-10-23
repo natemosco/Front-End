@@ -101,6 +101,29 @@ export default function FavListItem(props) {
         //     console.log(err,"axios err for Show Details button ")        
         // })
     }
+
+    const showSimilarSongs = (event) => {
+        event.preventDefault();
+        props.setRecommendedIsChecked(true);
+        let eventData = event.currentTarget;
+        if (!buttonOpen) {
+            setButtonOpen(!buttonOpen);
+
+            axios
+                .get(`https://spotify-api-helper.herokuapp.com/single_song_graph/DReaI4d55IIaiD6P9/${eventData.id}`)
+                .then(res => {
+                    console.log(res, "axios resoponse for Show Details button ")
+                    setGraphID(res.data.graph_uri)
+                })
+                .catch(err => {
+                    console.log(err, "axios err for Show Details button ")
+                })
+        } else if (buttonOpen) {
+            setButtonOpen(!buttonOpen)
+        }
+    }
+
+
     return (
         <>
             <FavListItemDiv onMouseEnter={onHover} onMouseLeave={onHover}>
@@ -111,16 +134,17 @@ export default function FavListItem(props) {
                 </div>
                 <span className="slot1">{props.fav.song_name}</span>
                 <span className="slot2">{props.fav.artist}</span>
-                <span className="slot3"><Button id={props.fav.id} name={"Track Details"} onClick={showDetails} /></span>
-                <span className="slot4"><Button id={props.fav.id} name={"Similar Songs"} onClick={} /></span>
+                <span className="slot3" id={props.fav.id} onClick={showDetails}><Button name={"Track Details"} /></span>
+                <span className="slot4" id={props.fav.id} onClick={showSimilarSongs}><Button name={"Similar Songs"} /></span>
 
             </FavListItemDiv>
             <MinorDiv>
                 <iframe id={props.trackid} className={(isOpen) ? "dodisplay" : "dontdisplay"} src={`https://embed.spotify.com/?uri=${props.fav.uri}`} width="400px" height="100px" />
             </MinorDiv>
-            <GraphDiv className={(buttonOpen) ? "dodisplay" : "dontdisplay"}>
-
+            <GraphDiv className={(buttonOpen && graphID) ? "dodisplay" : "dontdisplay"}>
+                <embed type="image/svg+xml" src={graphID} width="300" height="300" />
             </GraphDiv>
         </>
     )
 }
+
