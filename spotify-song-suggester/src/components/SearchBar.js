@@ -33,6 +33,7 @@ export default function SearchBar(props) {
             .get()
             .then(res => {
                 console.log("axios from searchbar", res)
+                // props.setSongs(res.data   or whatever)
                 props.history.push("/search")
                 document.querySelector("#search").value = "";
             })

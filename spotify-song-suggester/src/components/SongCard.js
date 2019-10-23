@@ -41,8 +41,6 @@ export default function SongCard(props) {
             <div className="FavoriteBorderIcon">
                 <FavoriteBorderIcon className="heart-icon"></FavoriteBorderIcon>
             </div>
-            <div className="random-background">
-            </div>
             <div className="info">
                 <iframe className="iframe" src={`https://embed.spotify.com/?uri=spotify:track:${props.id}`} width="400px" height="100px"></iframe>
             </div>
