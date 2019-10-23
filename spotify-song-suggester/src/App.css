@@ -27,3 +27,8 @@
 .dodisplay{
   display:block !important;
 }
+.dodisplayflex{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}

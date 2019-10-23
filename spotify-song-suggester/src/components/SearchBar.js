@@ -24,17 +24,23 @@ const StyledDiv = styled.div`
 `;
 
 export default function SearchBar(props) {
-    const { setSongs, setArtists, data } = props
+    const { setSongs } = props
+
+    function delayedRouter() {
+        setTimeout(() => {
+            props.history.push("/search")
+        }, 4000);
+    }
 
     const submit = (event) => {
         event.preventDefault();
-        let value = event.target.value.toLowerCase();
+        let value = document.querySelector("#search").value.toLowerCase();
         axios
-            .get()
+            .get(`https://spotify-api-helper.herokuapp.com/songs/DReaI4d55IIaiD6P9/${value}`)
             .then(res => {
                 console.log("axios from searchbar", res)
-                // props.setSongs(res.data   or whatever)
-                props.history.push("/search")
+                setSongs(res.data);
+                delayedRouter();
                 document.querySelector("#search").value = "";
             })
             .catch(err => {
