@@ -4,7 +4,7 @@ import SideNav from "./SideNav";
 export default function Home(props) {
     return (
         <div>
-            <SideNav {...props} setSongs={props.setSongs}></SideNav>
+            <SideNav {...props} setSongs={props.setSongs} recommendedIsChecked={props.recommendedIsChecked} setRecs={props.setRecs}></SideNav>
             <br /><br /><br />
             <p>hello1</p>
             <p>hello</p>
