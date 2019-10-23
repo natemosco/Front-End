@@ -12,7 +12,7 @@ import SearchDashboard from "./components/SearchDashboard";
 import SongsSearchDisplay from './components/SongsSearchDisplay';
 import ArtistsSearchDisplay from './components/ArtistsSearchDisplay';
 import ArtistFullWork from "./components/ArtistsFullWork";
-// import SavedSongs from "./components/SavedSongs";
+import SavedSongs from "./components/SavedSongs";
 import SearchHistory from "./components/SearchHistory";
 import ExportToSpotify from "./components/ExportToSpotify";
 

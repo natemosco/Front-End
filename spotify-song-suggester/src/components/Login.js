@@ -91,6 +91,8 @@ export default function SignIn(props) {
 			})
 			.catch(err => {
 				console.log("login axios error", err)
+				// props.history.push("/home")
+
 			})
 	}
 

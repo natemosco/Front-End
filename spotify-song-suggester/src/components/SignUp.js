@@ -91,7 +91,7 @@ export default function SignUp(props) {
 				props.history.push("/");
 			})
 			.catch(err => console.dir(err))
-		props.history.push("/");
+		//   props.history.push("/");
 
 
 
