@@ -58,7 +58,7 @@ export default function SavedSongs(props) {
 
     return (
         <div>
-            <SideNav></SideNav>
+            <SideNav {...props} setSongs={props.setSongs}></SideNav>
             <SortField filterSelect={filterSelect}></SortField>
             {favSongArray}
         </div>

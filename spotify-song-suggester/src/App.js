@@ -56,15 +56,15 @@ function App() {
 
       <Route exact path="/" render={(props) => <SignIn {...props} />}></Route>
       <Route exact path="/signup" render={(props) => <SignUp {...props} />}></Route>
-      <Route path="/home" render={(props) => <Home {...props} />}></Route>
-      <Route exact path="/search" render={(props) => <SearchDashboard {...props} />}></Route>
-      <Route path="/search/songs" render={(props) => <SongsSearchDisplay {...props} />}></Route>
-      <Route exact path="/search/artists" render={(props) => <ArtistsSearchDisplay {...props} />}></Route>
-      <Route exact path="/search/artists/songs" render={(props) => <ArtistFullWork {...props} />}></Route>
-      <Route path="/saved-songs" render={(props) => <SavedSongs {...props} favorites={favorites} />}></Route>
-      <Route path="/search-history" render={(props) => <SearchHistory {...props} />}></Route>
-      <Route path="/moods" render={(props) => <Moods {...props} />}></Route>
-      <Route path="/export-to-spotify" render={(props) => <ExportToSpotify {...props} />}></Route>
+      <Route path="/home" render={(props) => <Home {...props} setSongs={setSongs} />}></Route>
+      <Route exact path="/search" render={(props) => <SearchDashboard {...props} songs={songs} setSongs={setSongs} />}></Route>
+      {/* <Route path="/search/songs" render={(props) => <SongsSearchDisplay {...props} />}></Route> */}
+      {/* <Route exact path="/search/artists" render={(props) => <ArtistsSearchDisplay {...props} />}></Route> */}
+      {/* <Route exact path="/search/artists/songs" render={(props) => <ArtistFullWork {...props} setSongs={setSongs}/>}></Route> */}
+      <Route path="/saved-songs" render={(props) => <SavedSongs {...props} favorites={favorites} setSongs={setSongs} />}></Route>
+      <Route path="/search-history" render={(props) => <SearchHistory {...props} setSongs={setSongs} />}></Route>
+      <Route path="/moods" render={(props) => <Moods {...props} setSongs={setSongs} />}></Route>
+      <Route path="/export-to-spotify" render={(props) => <ExportToSpotify {...props} setSongs={setSongs} />}></Route>
     </div>
   );
 }

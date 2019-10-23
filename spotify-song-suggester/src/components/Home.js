@@ -1,10 +1,10 @@
 import React from 'react'
 import SideNav from "./SideNav";
 
-export default function Home() {
+export default function Home(props) {
     return (
         <div>
-            <SideNav></SideNav>
+            <SideNav {...props} setSongs={props.setSongs}></SideNav>
             <br /><br /><br />
             <p>hello1</p>
             <p>hello</p>
