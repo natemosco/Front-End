@@ -22,8 +22,8 @@
 }
 
 .dontdisplay{
-  display:none;
+  display:none !important;
 }
 .dodisplay{
-  display:block;
+  display:block !important;
 }
