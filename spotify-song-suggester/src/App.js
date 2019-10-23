@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { Route, Link } from "react-router-dom";
+import { Route, Redirect, Link } from "react-router-dom";
 import axios from "axios";
 import jss from 'jss';
 
@@ -18,8 +18,16 @@ import ExportToSpotify from "./components/ExportToSpotify";
 
 import Home from "./components/Home";
 
+// authorization
+const protectRoute = Component => props => {
+	if (localStorage.getItem("token")) {
+		return <Component {...props} />;
+	} else {
+		return <Redirect to="/" />;
+	}
+};
 
-
+const ProtectedHome = protectRoute(Home);
 
 function App() {
 
@@ -56,7 +64,7 @@ function App() {
 
 			<Route exact path="/" render={(props) => <SignIn {...props} />}></Route>
 			<Route exact path="/signup" render={(props) => <SignUp {...props} />}></Route>
-			<Route path="/home" render={(props) => <Home {...props} />}></Route>
+			<Route path="/home" render={(props) => <ProtectedHome {...props} />}></Route>
 			<Route exact path="/search" render={(props) => <SearchDashboard {...props} />}></Route>
 			<Route path="/search/songs" render={(props) => <SongsSearchDisplay {...props} />}></Route>
 			<Route exact path="/search/artists" render={(props) => <ArtistsSearchDisplay {...props} />}></Route>
