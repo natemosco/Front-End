@@ -28,6 +28,12 @@ const protectRoute = Component => props => {
 };
 
 const ProtectedHome = protectRoute(Home);
+const ProtectedSearchDashboard = protectRoute(SearchDashboard);
+const ProtectedSavedSongs = protectRoute(SavedSongs);
+const ProtectedSearchHistory = protectRoute(SearchHistory);
+const ProtectedExportToSpotify = protectRoute(ExportToSpotify);
+
+
 
 function App() {
 
@@ -66,9 +72,9 @@ function App() {
 			<Route exact path="/signup" render={(props) => <SignUp {...props} />}></Route>
 			<Route path="/home" render={(props) => <ProtectedHome {...props} />}></Route>
 			<Route exact path="/search" render={(props) => <SearchDashboard {...props} />}></Route>
-			<Route path="/search/songs" render={(props) => <SongsSearchDisplay {...props} />}></Route>
-			<Route exact path="/search/artists" render={(props) => <ArtistsSearchDisplay {...props} />}></Route>
-			<Route exact path="/search/artists/songs" render={(props) => <ArtistFullWork {...props} />}></Route>
+			{/* <Route path="/search/songs" render={(props) => <SongsSearchDisplay {...props} />}></Route> */}
+			{/* <Route exact path="/search/artists" render={(props) => <ArtistsSearchDisplay {...props} />}></Route> */}
+			{/* <Route exact path="/search/artists/songs" render={(props) => <ArtistFullWork {...props} />}></Route> */}
 			<Route path="/saved-songs" render={(props) => <SavedSongs {...props} favorites={favorites} />}></Route>
 			<Route path="/search-history" render={(props) => <SearchHistory {...props} />}></Route>
 			<Route path="/export-to-spotify" render={(props) => <ExportToSpotify {...props} />}></Route>
