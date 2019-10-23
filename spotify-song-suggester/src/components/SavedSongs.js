@@ -13,24 +13,20 @@ export default function SavedSongs(props) {
 		tempo: false
 	})
 
-	// 	const filterSelect = (event) => {
-	// 		event.preventDefault();
-	// 		setSortFields({
-	// 			title: false,
-	// 			artist: false,
-	// 			duration: false,
-	// 			tempo: false,
-	// 			[event.target.id]: true
-	// 		})
-	// 	}
+	const filterSelect = (event) => {
+		event.preventDefault();
+		setSortFields({
+			title: false,
+			artist: false,
+			duration: false,
+			tempo: false,
+			[event.target.id]: true
+		})
+	}
 
 
 	let favSongArray = [];
-	// favSongArray = favorites.map((fav, index) => {
-	//     return <FavListItem key={index} fav={fav} />
-	// })
 
-	// useEffect(() => {
 	if (sortFields.title) {
 		let sortedTitleArray = [];
 		sortedTitleArray = favorites.sort((a, b) => (a.song_name > b.song_name) ? 1 : -1).map((fav, index) => {
@@ -59,14 +55,13 @@ export default function SavedSongs(props) {
 		})
 		favSongArray = sortedTempoArray;
 	}
-	//     }, [sortFields])
 
-	// 	return (
-	// 		<div>
-	// 			<SideNav></SideNav>
-	// 			<SortField filterSelect={filterSelect}></SortField>
-	// 			{favSongArray}
-	// 		</div>
-	// 	)
-	// }
+	return (
+		<div>
+			<SideNav></SideNav>
+			<SortField filterSelect={filterSelect}></SortField>
+			{favSongArray}
+		</div>
+	)
 }
+
