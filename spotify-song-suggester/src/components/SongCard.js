@@ -77,7 +77,7 @@ export default function SongCard(props) {
 				</div>
 				<div id={props.info.id} className={(liked) ? "dodisplayflex DeleteIconDiv" : "dontdisplay DeleteIconDiv"} onClick={deleted}>
 					<RemoveCircleOutlineIcon></RemoveCircleOutlineIcon>
-				</div>
+				</div>git
 			</SongCardMain>
 		)
 	} else if (!props.info) {
