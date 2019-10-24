@@ -14,8 +14,8 @@ export default function SortField(props) {
         <SortFieldDiv>
             <span id="title" onClick={props.filterSelect}>Title</span>
             <span id="artist" onClick={props.filterSelect}>Artist</span>
-            <span id="duration" onClick={props.filterSelect}>Duration</span>
-            <span id="tempo" onClick={props.filterSelect}>Tempo</span>
+            {/* <span id="duration" onClick={props.filterSelect}>Duration</span>
+            <span id="tempo" onClick={props.filterSelect}>Tempo</span> */}
         </SortFieldDiv>
     )
 }

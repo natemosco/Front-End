@@ -32,3 +32,10 @@
   justify-content:center;
   align-items:center;
 }
+
+
+.makeStyles-drawerHeader-8{
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 0 25px;
+}

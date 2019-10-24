@@ -4,6 +4,8 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 import axios from 'axios';
+import axiosWithAuth from '../utils/axiosWithAuth';
+
 // import liked from "./liked";
 
 const SongCardMain = styled.main`
@@ -41,15 +43,19 @@ export default function SongCard(props) {
 
     const addToLiked = (event) => {
         event.preventDefault();
+        if (!liked) {
+            axiosWithAuth()
+                .post(
+                    `https://spotify-song-suggester-app.herokuapp.com/songs/song`, props.info.id)
+
+                .then(res => {
+                    console.log(res, "response from liking a song")
+                })
+                .catch(err => {
+                    console.log(err, "error from liking a song")
+                })
+        }
         setLiked(true);
-        // axios
-        // .post()
-        // .then(res =>{
-        //     console.log(res, "response from liking a song")
-        // })
-        // .catch(err => {
-        //     console.log(err, "error from liking a song")
-        // })
 
     }
     const deleted = (event) => {
