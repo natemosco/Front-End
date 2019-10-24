@@ -73,7 +73,7 @@ function Button(props) {
 }
 
 export default function FavListItem(props) {
-    let { setMainGraphUrl } = props;
+    let { setMainGraphUrl, setRecs } = props;
     const [isOpen, setIsOpen] = useState(false);
     const [hover, setHover] = useState(false);
     const [buttonOpen, setButtonOpen] = useState(false);
@@ -94,12 +94,15 @@ export default function FavListItem(props) {
         props.setRecommendedIsChecked(true);
         let eventData2 = event.currentTarget;
         setButtonOpen(!buttonOpen)
+        // #DS Link
         axios
-            .get(`https://spotify-api-helper.herokuapp.com/graph/DReaI4d55IIaiD6P9/${eventData2.id}`)
+            .get(`https://spotify-api-helper.herokuapp.com/graph_data/DReaI4d55IIaiD6P9/${eventData2.id}`)
             .then(res => {
                 console.log(res, "axios resoponse for setting 5-way graph ")
-                setMainGraphUrl(res.data.graph_uri)
-                props.hisory.push("/search")
+                console.log(props, "props in question: HISTORY")
+                setMainGraphUrl(res.data[0].graph_uri)
+                setRecs(res.data[1])
+                props.history.push("/search")
             })
             .catch(err => {
                 console.log(err, "axios ERROR for setting 5-way graph  ")
@@ -112,6 +115,7 @@ export default function FavListItem(props) {
 
         if (!buttonOpen) {
             setButtonOpen(!buttonOpen);
+            // #DS Link
             axios
                 .get(`https://spotify-api-helper.herokuapp.com/single_song_graph/DReaI4d55IIaiD6P9/${eventData.id}`)
                 .then(res => {

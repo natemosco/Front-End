@@ -142,11 +142,11 @@ export default function SignIn(props) {
 						Sign In
           </Button>
 					<Grid container>
-						<Grid item xs>
+						{/* <Grid item xs>
 							<Link to="/signup">
 								Forgot password?
               </Link>
-						</Grid>
+						</Grid> */}
 						<Grid item>
 							<Link to="/signup">
 								{"Don't have an account? Sign Up"}
@@ -158,6 +158,6 @@ export default function SignIn(props) {
 			<Box mt={8}>
 				<Copyright />
 			</Box>
-		</Container>
+		</Container >
 	);
 }

@@ -9,9 +9,9 @@ import SignIn from './components/Login';
 import SignUp from "./components/SignUp";
 import SideNav from "./components/SideNav";
 import SearchDashboard from "./components/SearchDashboard";
-import SongsSearchDisplay from './components/SongsSearchDisplay';
-import ArtistsSearchDisplay from './components/ArtistsSearchDisplay';
-import ArtistFullWork from "./components/ArtistsFullWork";
+// import SongsSearchDisplay from './components/SongsSearchDisplay';
+// import ArtistsSearchDisplay from './components/ArtistsSearchDisplay';
+// import ArtistFullWork from "./components/ArtistsFullWork";
 import SavedSongs from "./components/SavedSongs";
 import SearchHistory from "./components/SearchHistory";
 import ExportToSpotify from "./components/ExportToSpotify";
@@ -79,9 +79,6 @@ function App() {
 
       <Route path="/home" render={(props) => <ProtectedHome {...props} setSongs={setSongs} recommendedIsChecked={recommendedIsChecked} setRecommendedIsChecked={setRecommendedIsChecked} setRecs={setRecs} setMainGraphUrl={setMainGraphUrl} />}></Route>
       <Route exact path="/search" render={(props) => <ProtectedSearchDashboard {...props} songs={songs} setSongs={setSongs} recommendedIsChecked={recommendedIsChecked} setRecommendedIsChecked={setRecommendedIsChecked} setRecs={setRecs} recs={recs} mainGraphUrl={mainGraphUrl} setMainGraphUrl={setMainGraphUrl} />}></Route>
-      {/* <Route path="/search/songs" render={(props) => <SongsSearchDisplay {...props} />}></Route> */}
-      {/* <Route exact path="/search/artists" render={(props) => <ArtistsSearchDisplay {...props} />}></Route> */}
-      {/* <Route exact path="/search/artists/songs" render={(props) => <ArtistFullWork {...props} setSongs={setSongs}/>}></Route> */}
       <Route path="/saved-songs" render={(props) => <ProtectedSavedSongs {...props} favorites={favorites} setSongs={setSongs} setRecommendedIsChecked={setRecommendedIsChecked} recommendedIsChecked={recommendedIsChecked} setRecs={setRecs} setMainGraphUrl={setMainGraphUrl} />}></Route>
       <Route path="/search-history" render={(props) => <ProtectedSearchHistory {...props} setSongs={setSongs} recommendedIsChecked={recommendedIsChecked} setRecommendedIsChecked={setRecommendedIsChecked} setRecs={setRecs} setMainGraphUrl={setMainGraphUrl} />}></Route>
       <Route path="/moods" render={(props) => <Moods {...props} setSongs={setSongs} recommendedIsChecked={recommendedIsChecked} setRecommendedIsChecked={setRecommendedIsChecked} setRecs={setRecs} setMainGraphUrl={setMainGraphUrl} />}></Route>

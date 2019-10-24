@@ -84,7 +84,7 @@ export default function SignUp(props) {
 		// 		})
 		// }
 		console.log(newCreds);
-		axios.post('https://spotify-song-suggester-app.herokuapp.com/createnewuser?getaccess=true',
+		axios.post('https://spotify-song-suggester-app.herokuapp.com/createnewuser',
 			newCreds)
 			.then(res => {
 				console.log(res);
