@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import SideNav from "./SideNav";
 import SortField from "./SortField";
 import FavListItem from "./FavListItem";
+import styled from "styled-components";
+
+const DivLimiter = styled.div`
+    max-width: 100%;
+`;
 
 
 export default function SavedSongs(props) {
@@ -57,11 +62,11 @@ export default function SavedSongs(props) {
     }
 
     return (
-        <div>
+        <DivLimiter>
             <SideNav {...props} setSongs={setSongs} recommendedIsChecked={recommendedIsChecked} setRecommendedIsChecked={setRecommendedIsChecked} setRecs={setRecs} setMainGraphUrl={setMainGraphUrl}></SideNav>
             <SortField filterSelect={filterSelect}></SortField>
             {favSongArray}
-        </div>
+        </DivLimiter>
     )
 }
 

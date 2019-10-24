@@ -4,17 +4,24 @@ import MoodSliders from "./MoodSliders";
 import styled from "styled-components";
 import axios from "axios";
 
+import SongCard from './SongCard'
+
 const Div = styled.div`
+    width:auto;
     margin-left:240px;
     margin-top:100px;
     display: flex;
+    flex-wrap: wrap;
+    width:1100px;
     .sliders{
         display:flex;
         flex-direction: column;
     }
     .songs{
         display:flex;
-        flex-direction:column;
+        flex-direction:row;
+        height:300px;
+        width:auto;
     }
 `;
 const StyledButton = styled.button`
@@ -31,6 +38,7 @@ const StyledButton = styled.button`
 `;
 
 export default function Moods(props) {
+    const [liked, setLiked] = useState(false);
     let { setSongs, recommendedIsChecked, setRecommendedIsChecked, setRecs, setMainGraphUrl } = props;
     const [songProfile, setSongProfile] = useState({})
     const [embedData, setEmbedData] = useState([]);
@@ -77,9 +85,11 @@ export default function Moods(props) {
                     {slidersArray}
                     <StyledButton onClick={sliderSubmit}>Submit Slider Values</StyledButton>
                 </section>
+                <section className="graph">
+                    <embed type="image/svg+xml" src={graphUri} width="600" height="600" />
+                </section>
                 <section className="songs">
-                    {embedData.map((song) => <iframe id={song.id} src={`https://embed.spotify.com/?uri=${song.uri}`} width="400px" height="100px" />)};
-                    <embed type="image/svg+xml" src={graphUri} width="800" height="800" />
+                    {embedData.map((song, index) => <SongCard key={index} info={song}></SongCard>)};
                 </section>
             </Div>
 

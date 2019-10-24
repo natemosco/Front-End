@@ -94,7 +94,7 @@ export default function FavListItem(props) {
         props.setRecommendedIsChecked(true);
         let eventData2 = event.currentTarget;
         setButtonOpen(!buttonOpen)
-        // #DS Link
+        // #DS Links
         axios
             .get(`https://spotify-api-helper.herokuapp.com/graph_data/DReaI4d55IIaiD6P9/${eventData2.id}`)
             .then(res => {

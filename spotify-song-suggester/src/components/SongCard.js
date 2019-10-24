@@ -10,6 +10,8 @@ const SongCardMain = styled.main`
     width:100%;
     height:100px;
     display:flex;
+    margin: 10px 0;
+
     .FavoriteIconDiv{
         display:flex;
         justify-content:center;
@@ -24,7 +26,6 @@ const SongCardMain = styled.main`
         display:flex;
         justify-content:center;
         align-items:center;
-        flex-wrap:wrap;
         
     }
     .DeleteIconDiv{
