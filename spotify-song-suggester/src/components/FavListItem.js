@@ -73,6 +73,7 @@ function Button(props) {
 }
 
 export default function FavListItem(props) {
+    let { setMainGraphUrl, setRecs } = props;
     const [isOpen, setIsOpen] = useState(false);
     const [hover, setHover] = useState(false);
     const [buttonOpen, setButtonOpen] = useState(false);
@@ -89,26 +90,32 @@ export default function FavListItem(props) {
         event.preventDefault();
         setIsOpen(!isOpen);
     }
-    const showDetails = (event) => {
+    const showSimilarSongs = (event) => {
+        props.setRecommendedIsChecked(true);
+        let eventData2 = event.currentTarget;
         setButtonOpen(!buttonOpen)
-        // axios
-        // .get(`/${event.target.id}`)
-        // .then(res =>{
-        //     console.log(res,"axios resoponse for Show Details button ")
-        //     setGraphID(res.data)
-        // })
-        // .catch(err =>{
-        //     console.log(err,"axios err for Show Details button ")        
-        // })
+        // #DS Link
+        axios
+            .get(`https://spotify-api-helper.herokuapp.com/graph_data/DReaI4d55IIaiD6P9/${eventData2.id}`)
+            .then(res => {
+                console.log(res, "axios resoponse for setting 5-way graph ")
+                console.log(props, "props in question: HISTORY")
+                setMainGraphUrl(res.data[0].graph_uri)
+                setRecs(res.data[1])
+                props.history.push("/search")
+            })
+            .catch(err => {
+                console.log(err, "axios ERROR for setting 5-way graph  ")
+            })
     }
 
-    const showSimilarSongs = (event) => {
+    const showDetails = (event) => {
         event.preventDefault();
-        props.setRecommendedIsChecked(true);
         let eventData = event.currentTarget;
+
         if (!buttonOpen) {
             setButtonOpen(!buttonOpen);
-
+            // #DS Link
             axios
                 .get(`https://spotify-api-helper.herokuapp.com/single_song_graph/DReaI4d55IIaiD6P9/${eventData.id}`)
                 .then(res => {
@@ -134,15 +141,15 @@ export default function FavListItem(props) {
                 </div>
                 <span className="slot1">{props.fav.song_name}</span>
                 <span className="slot2">{props.fav.artist}</span>
-                <span className="slot3" id={props.fav.id} onClick={showDetails}><Button name={"Track Details"} /></span>
-                <span className="slot4" id={props.fav.id} onClick={showSimilarSongs}><Button name={"Similar Songs"} /></span>
+                <span className="slot3" id={props.fav.id} onClick={showSimilarSongs}><Button name={"Similar Songs"} /></span>
+                <span className="slot4" id={props.fav.id} onClick={showDetails}><Button name={"Track Details"} /></span>
 
             </FavListItemDiv>
             <MinorDiv>
                 <iframe id={props.trackid} className={(isOpen) ? "dodisplay" : "dontdisplay"} src={`https://embed.spotify.com/?uri=${props.fav.uri}`} width="400px" height="100px" />
             </MinorDiv>
             <GraphDiv className={(buttonOpen && graphID) ? "dodisplay" : "dontdisplay"}>
-                <embed type="image/svg+xml" src={graphID} width="300" height="300" />
+                <embed type="image/svg+xml" src={graphID} width="600" height="600" />
             </GraphDiv>
         </>
     )

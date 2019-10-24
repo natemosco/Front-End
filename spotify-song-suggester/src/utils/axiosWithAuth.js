@@ -1,14 +1,15 @@
-// import axios from 'axios';
+import axios from "axios";
 
+const axiosWithAuth = () => {
+    const token = localStorage.getItem("token");
 
-// //this function will create an axios request and set an Authorization header that will retrieve the token out of local storage. This will allow us to use this when needed
-// const axiosWithAuth = () => {
-// 	return axios.create({
-// 		headers: {
-// 			Authorization: `Basic ${btoa('lambda-client:lambda-secret')}`,
-//         'Content-Type': 'application/x-www-form-urlencoded'
-// 		}
-// 	})
-// }
+    return axios.create({
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+        }
+    });
+};
 
-// export default axiosWithAuth;
+export default axiosWithAuth;
+

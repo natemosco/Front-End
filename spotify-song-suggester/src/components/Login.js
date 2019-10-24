@@ -76,7 +76,7 @@ export default function SignIn(props) {
 		event.preventDefault();
 		console.log(creds);
 		axios
-			.post('https://spotify-song-suggester-app.herokuapp.com/login', `grant_type=password&username=${creds.username}&password=${creds.password}`
+			.post(`https:spotify-song-suggester-app.herokuapp.com/login`, `grant_type=password&username=${creds.username}&password=${creds.password}`
 				, {
 					headers: {
 						Authorization: `Basic ${btoa('lambda-client:lambda-secret')}`,
@@ -141,11 +141,11 @@ export default function SignIn(props) {
 						Sign In
           </Button>
 					<Grid container>
-						<Grid item xs>
+						{/* <Grid item xs>
 							<Link to="/signup">
 								Forgot password?
               </Link>
-						</Grid>
+						</Grid> */}
 						<Grid item>
 							<Link to="/signup">
 								{"Don't have an account? Sign Up"}
@@ -157,6 +157,6 @@ export default function SignIn(props) {
 			<Box mt={8}>
 				<Copyright />
 			</Box>
-		</Container>
+		</Container >
 	);
 }
