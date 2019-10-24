@@ -72,15 +72,15 @@ function App() {
 
 			<Route exact path="/" render={(props) => <SignIn {...props} />}></Route>
 			<Route exact path="/signup" render={(props) => <SignUp {...props} />}></Route>
-			<Route path="/home" render={(props) => <Home {...props} setSongs={setSongs} recommendedIsChecked={recommendedIsChecked} setRecs={setRecs} />}></Route>
-			<Route exact path="/search" render={(props) => <SearchDashboard {...props} songs={songs} setSongs={setSongs} recommendedIsChecked={recommendedIsChecked} setRecs={setRecs} recs={recs} />}></Route>
+			<Route path="/home" render={(props) => <ProtectedHome {...props} setSongs={setSongs} recommendedIsChecked={recommendedIsChecked} setRecs={setRecs} />}></Route>
+			<Route exact path="/search" render={(props) => <ProtectedSearchDashboard {...props} songs={songs} setSongs={setSongs} recommendedIsChecked={recommendedIsChecked} setRecs={setRecs} recs={recs} />}></Route>
 			{/* <Route path="/search/songs" render={(props) => <SongsSearchDisplay {...props} />}></Route> */}
 			{/* <Route exact path="/search/artists" render={(props) => <ArtistsSearchDisplay {...props} />}></Route> */}
 			{/* <Route exact path="/search/artists/songs" render={(props) => <ArtistFullWork {...props} setSongs={setSongs}/>}></Route> */}
-			<Route path="/saved-songs" render={(props) => <SavedSongs {...props} favorites={favorites} setSongs={setSongs} setRecommendedIsChecked={setRecommendedIsChecked} recommendedIsChecked={recommendedIsChecked} setRecs={setRecs} />}></Route>
-			<Route path="/search-history" render={(props) => <SearchHistory {...props} setSongs={setSongs} recommendedIsChecked={recommendedIsChecked} setRecs={setRecs} />}></Route>
+			<Route path="/saved-songs" render={(props) => <ProtectedSavedSongs {...props} favorites={favorites} setSongs={setSongs} setRecommendedIsChecked={setRecommendedIsChecked} recommendedIsChecked={recommendedIsChecked} setRecs={setRecs} />}></Route>
+			<Route path="/search-history" render={(props) => <ProtectedSearchHistory {...props} setSongs={setSongs} recommendedIsChecked={recommendedIsChecked} setRecs={setRecs} />}></Route>
 			<Route path="/moods" render={(props) => <Moods {...props} setSongs={setSongs} recommendedIsChecked={recommendedIsChecked} setRecs={setRecs} />}></Route>
-			<Route path="/export-to-spotify" render={(props) => <ExportToSpotify {...props} setSongs={setSongs} recommendedIsChecked={recommendedIsChecked} setRecs={setRecs} />}></Route>
+			<Route path="/export-to-spotify" render={(props) => <ProtectedExportToSpotify  {...props} setSongs={setSongs} recommendedIsChecked={recommendedIsChecked} setRecs={setRecs} />}></Route>
 		</div>
 	);
 }
