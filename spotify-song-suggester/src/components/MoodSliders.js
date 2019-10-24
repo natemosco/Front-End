@@ -5,6 +5,8 @@ import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import Input from '@material-ui/core/Input';
 import VolumeUp from '@material-ui/icons/VolumeUp';
+import styled from "styled-components";
+
 
 const useStyles = makeStyles({
     root: {
