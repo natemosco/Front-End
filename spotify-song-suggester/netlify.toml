@@ -1,0 +1,4 @@
+[build]
+base="spotify-song-suggester/"
+publish="build/"
+command = "yard build"
