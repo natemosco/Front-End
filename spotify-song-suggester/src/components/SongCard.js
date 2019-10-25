@@ -9,7 +9,7 @@ import axiosWithAuth from '../utils/axiosWithAuth';
 // import liked from "./liked";
 
 const SongCardMain = styled.main`
-    width:auto;
+    width:100%;
     height:100px;
     display:flex;
     margin: 10px 0;

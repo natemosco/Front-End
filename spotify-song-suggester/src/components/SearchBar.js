@@ -43,7 +43,7 @@ export default function SearchBar(props) {
         let value = document.querySelector("#search").value.toLowerCase();
         if (!recommendedIsChecked) {
             axios
-                .get(`https://spotify-song-suggester-app.herokuapp.com/data/search/${value}`)
+                .get(`https://spotify-song-suggester-app.herokuapp.com/data/search/images/${value}`)
                 .then(res => {
                     console.log("axios from UNCHECKED searchbar", res)
                     setSongs(res.data);
