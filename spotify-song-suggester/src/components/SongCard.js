@@ -36,19 +36,22 @@ const SongCardMain = styled.main`
  
 `;
 export default function SongCard(props) {
-	console.log(props.info, "props in song card");
+	console.log(props.info.info, "props in song card info");
+	console.log(props, "props in song card");
 	const [liked, setLiked] = useState(false);
 	const addToLiked = (event) => {
 		event.preventDefault();
 		if (!liked) {
 			axiosWithAuth()
 				.post(
-					`https://spotify-song-suggester-app.herokuapp.com/songs/song`, props.info.id)
+					'https://spotify-song-suggester-app.herokuapp.com/songs/song/images', props.info)
 				.then(res => {
 					console.log(res, "response from liking a song")
+					axiosWithAuth().post(`https://spotify-song-suggester-app.herokuapp.com/users/user/song/images/${props.info.trackid}`)
 				})
 				.catch(err => {
 					console.log(err, "error from liking a song")
+					axiosWithAuth().post(`https://spotify-song-suggester-app.herokuapp.com/users/user/song/images/${props.info.trackid}`)
 				})
 		}
 		setLiked(true);
@@ -77,7 +80,7 @@ export default function SongCard(props) {
 				</div>
 				<div id={props.info.id} className={(liked) ? "dodisplayflex DeleteIconDiv" : "dontdisplay DeleteIconDiv"} onClick={deleted}>
 					<RemoveCircleOutlineIcon></RemoveCircleOutlineIcon>
-				</div>git
+				</div>
 			</SongCardMain>
 		)
 	} else if (!props.info) {

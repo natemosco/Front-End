@@ -20,8 +20,13 @@ const Div = styled.div`
     .songs{
         display:flex;
         flex-direction:row;
-        height:300px;
-        width:auto;
+        flex-wrap:wrap;
+        min-height:300px;
+        width:1050px;
+        .SongCard{
+            width:520px !important;
+            display:flex;
+        }
     }
 `;
 const StyledButton = styled.button`
@@ -89,7 +94,7 @@ export default function Moods(props) {
                     <embed type="image/svg+xml" src={graphUri} width="600" height="600" />
                 </section>
                 <section className="songs">
-                    {embedData.map((song, index) => <SongCard key={index} info={song}></SongCard>)};
+                    {embedData.map((song, index) => <SongCard className="SongCard" key={index} info={song}></SongCard>)};
                 </section>
             </Div>
 
