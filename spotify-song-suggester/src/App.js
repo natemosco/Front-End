@@ -56,18 +56,18 @@ function App() {
 		{ "artist": "Camila Cabello", "id": "5HwnezK198pJCEj1l2Adjy", "large_image": "https://i.scdn.co/image/ab67616d0000b2736eb0b9e73adcf04e4ed3eca4", "med_image": "https://i.scdn.co/image/ab67616d00001e026eb0b9e73adcf04e4ed3eca4", "small_image": "https://i.scdn.co/image/ab67616d000048516eb0b9e73adcf04e4ed3eca4", "song_name": "She Loves Control", "uri": "spotify:track:5HwnezK198pJCEj1l2Adjy" }
 	])
 
-	useEffect(() => {
-		axios
-			.get("https:spotify-song-suggester-app.com/user/songs")
-			.then(res => {
-				console.log("axios response", res);
-				// setFavorites(res.data);
-			})
-			.catch(err => {
-				console.log("axios error", err);
-			})
+	// useEffect(() => {
+	// 	axios
+	// 		.get("https:spotify-song-suggester-app.com/user/songs")
+	// 		.then(res => {
+	// 			console.log("axios response", res);
+	// 			// setFavorites(res.data);
+	// 		})
+	// 		.catch(err => {
+	// 			console.log("axios error", err);
+	// 		})
 
-	}, []);
+	// }, []);
 
 
 	return (
