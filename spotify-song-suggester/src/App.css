@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  max-width:70vw;
 }
 
 .App-logo {
@@ -26,4 +27,34 @@
 }
 .dodisplay{
   display:block !important;
+}
+.dodisplayflex{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+
+.makeStyles-drawerHeader-8{
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 0 25px;
+}
+
+.MuiToolbar-root.MuiToolbar-regular.MuiToolbar-gutters {
+  max-width: 300px !important;
+}
+
+.MuiSlider-root {
+  /* slider color HERE */
+  color: #3f51b5; 
+  width: 236px !important;
+}
+
+.makeStyles-root-153 {
+  width: 475px !important;
+  display: flex !important;
+}
+p#input-slider {
+  width: 170px !important;
 }

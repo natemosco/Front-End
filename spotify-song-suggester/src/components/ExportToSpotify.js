@@ -1,9 +1,10 @@
 import React from 'react'
 import SideNav from "./SideNav";
-export default function ExportToSpotify() {
+export default function ExportToSpotify(props) {
+    let { setSongs, recommendedIsChecked, setRecommendedIsChecked, setRecs, setMainGraphUrl } = props;
     return (
         <div>
-            <SideNav></SideNav>
+            <SideNav setSongs={props.setSongs} setSongs={setSongs} recommendedIsChecked={recommendedIsChecked} setRecommendedIsChecked={setRecommendedIsChecked} setRecs={setRecs} setMainGraphUrl={setMainGraphUrl}></SideNav>
         </div>
     )
 }
