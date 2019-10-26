@@ -45,16 +45,24 @@
   max-width: 300px !important;
 }
 
-.MuiSlider-root {
+#MuiSlider-root {
   /* slider color HERE */
-  color: #3f51b5; 
+  /* color: #3f51b5;  */
   width: 236px !important;
 }
 
-.makeStyles-root-153 {
+#makeStyles-root-153 {
   width: 475px !important;
   display: flex !important;
+  margin-top: 3px;
 }
-p#input-slider {
+.input-slider {
   width: 170px !important;
+}
+
+#GraphWhiteSpace{
+  margin-top: -90px;
+}
+#pointerFinger:hover{
+  cursor: help;
 }

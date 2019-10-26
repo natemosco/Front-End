@@ -4,9 +4,6 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import Input from '@material-ui/core/Input';
-import VolumeUp from '@material-ui/icons/VolumeUp';
-import styled from "styled-components";
-
 
 const useStyles = makeStyles({
     root: {
@@ -38,15 +35,13 @@ export default function MoodSliders(props) {
     };
 
     return (
-        <div className={classes.root}>
-            <Typography id="input-slider" gutterBottom>
+        <div id="makeStyles-root-153" className={classes.root}>
+            <Typography className="input-slider" gutterBottom id="pointerFinger" onClick={props.showHideModal}>
                 {props.name}
             </Typography>
+
             <Grid container spacing={2} alignItems="center">
-                <Grid item>
-                    {/* <VolumeUp /> */}
-                </Grid>
-                <Grid item xs>
+                <Grid id="MuiSlider-root" item xs>
                     <Slider
                         // value={typeof value === 'number' ? value : 0}
                         onChange={handleSliderChange}

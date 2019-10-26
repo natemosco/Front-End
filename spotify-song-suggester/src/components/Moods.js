@@ -3,8 +3,10 @@ import SideNav from "./SideNav";
 import MoodSliders from "./MoodSliders";
 import styled from "styled-components";
 import axios from "axios";
+import Modal from "./Modal";
+import data from "../data.json";
 
-import SongCard from './SongCard'
+import SongCard2 from './SongCard2'
 
 const Div = styled.div`
     width:auto;
@@ -12,21 +14,18 @@ const Div = styled.div`
     margin-top:100px;
     display: flex;
     flex-wrap: wrap;
-    width:1100px;
+    width:1180px;
     .sliders{
         display:flex;
         flex-direction: column;
     }
     .songs{
+        margin-top: -100px;
         display:flex;
-        flex-direction:row;
         flex-wrap:wrap;
-        min-height:300px;
-        width:1050px;
-        .SongCard{
-            width:520px !important;
-            display:flex;
-        }
+        justify-content:space-between;
+        align-items:flex-start;
+        width:1180px;
     }
 `;
 const StyledButton = styled.button`
@@ -43,11 +42,13 @@ const StyledButton = styled.button`
 `;
 
 export default function Moods(props) {
-    const [liked, setLiked] = useState(false);
     let { setSongs, recommendedIsChecked, setRecommendedIsChecked, setRecs, setMainGraphUrl } = props;
     const [songProfile, setSongProfile] = useState({})
     const [embedData, setEmbedData] = useState([]);
     const [graphUri, setGraphUri] = useState("")
+    const [visible, setVisible] = useState(false);
+    const [qualityName, setQualityName] = useState("");
+
     useEffect(() => {
         axios
             .get("https://spotify-api-helper.herokuapp.com/playlist_recs/DReaI4d55IIaiD6P9?playlist=[%271h2vCbRUWpWnYEgb2hfQbi%27,%27498ZVInMGDkmmNVpSWqHiZ%27,%273bidbhpOYeV4knp8AIu8Xn%27,%277B1QliUMZv7gSTUGAfMRRD%27,%272qYsSHsYkihWx043HVJQRV%27]")
@@ -77,10 +78,15 @@ export default function Moods(props) {
             })
     }
 
+    const showHideModal = () => {
+        setVisible(!visible);
+    }
     let slidersArray = [];
     for (let prop in songProfile) {
-        slidersArray.push(<MoodSliders songProfile={songProfile} initialValue={songProfile[prop]} name={`${prop}`} className={`${prop}`}></MoodSliders>)
+        slidersArray.push(<MoodSliders showHideModal={showHideModal} songProfile={songProfile} initialValue={songProfile[prop]} name={`${prop}`} className={`${prop}`}></MoodSliders>)
     }
+
+
     return (
         <div>
             <SideNav {...props} setSongs={setSongs} recommendedIsChecked={recommendedIsChecked} setRecommendedIsChecked={setRecommendedIsChecked} setRecs={setRecs} setMainGraphUrl={setMainGraphUrl}></SideNav>
@@ -90,14 +96,14 @@ export default function Moods(props) {
                     {slidersArray}
                     <StyledButton onClick={sliderSubmit}>Submit Slider Values</StyledButton>
                 </section>
-                <section className="graph">
-                    <embed type="image/svg+xml" src={graphUri} width="600" height="600" />
+                <section id="GraphWhiteSpace" className="graph">
+                    <embed type="image/svg+xml" src={graphUri} width="700" height="700" />
                 </section>
                 <section className="songs">
-                    {embedData.map((song, index) => <SongCard className="SongCard" key={index} info={song}></SongCard>)};
+                    {embedData.map((song, index) => <SongCard2 className="SongCard2" key={index} info={song}></SongCard2>)}
                 </section>
             </Div>
-
+            <Modal className={(visible) ? "dodisplayflex" : "dontdisplay"} setVisible={setVisible}></Modal>
         </div>
     )
 }

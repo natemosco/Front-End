@@ -1,12 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from "react-router-dom";
+import React from 'react'
 import styled from "styled-components";
 
 import SongCard from "./SongCard";
-import ArtistCard from "./ArtistCard";
 import SideNav from "./SideNav";
-import axios from 'axios';
-// import liked from "./liked";
 
 const DashboardDiv = styled.div`
     width:100%;
@@ -32,58 +28,58 @@ const DashboardDiv = styled.div`
 
 export default function SearchDashboard(props) {
 
-    let { songs, setSongs, recommendedIsChecked, setRecommendedIsChecked, mainGraphUrl, setMainGraphUrl, recs, setRecs } = props;
-    let songsArray = [];
-    let recsArray = [];
-    for (let i = 0; i < songs.length; i++) {
-        songsArray.push(<SongCard key={i} info={songs[i]} />)
-    }
-    for (let i = 0; i < recs.length; i++) {
-        recsArray.push(<SongCard key={i} info={recs[i]} />)
-    }
+	let { songs, setSongs, recommendedIsChecked, setRecommendedIsChecked, mainGraphUrl, setMainGraphUrl, recs, setRecs } = props;
+	let songsArray = [];
+	let recsArray = [];
+	for (let i = 0; i < songs.length; i++) {
+		songsArray.push(<SongCard key={i} info={songs[i]} />)
+	}
+	for (let i = 0; i < recs.length; i++) {
+		recsArray.push(<SongCard key={i} info={recs[i]} />)
+	}
 
 
-    if (!recommendedIsChecked) {
-        return (
-            <DashboardDiv>
-                <SideNav {...props} setSongs={props.setSongs} setMainGraphUrl={setMainGraphUrl}></SideNav>
-                <section className="songs-preview">
-                    <div className="search-title">
-                        <h3>Songs</h3>
-                        {/* <Link to="/search/songs"><p>SEE ALL</p></Link> */}
-                    </div>
-                    {songsArray}
-                </section>
-                <section className="artists-preview">
-                    <div className="search-title">
-                        <h3>Song Graph</h3>
-                        {/* <Link to="/search/artists"> <p>SEE ALL</p></Link> */}
-                    </div>
-                    <h2>Graph for each clicked song pops up <br />here when we click on each song</h2>
+	if (!recommendedIsChecked) {
+		return (
+			<DashboardDiv>
+				<SideNav {...props} setSongs={props.setSongs} setMainGraphUrl={setMainGraphUrl}></SideNav>
+				<section className="songs-preview">
+					<div className="search-title">
+						<h3>Songs</h3>
+						{/* <Link to="/search/songs"><p>SEE ALL</p></Link> */}
+					</div>
+					{songsArray}
+				</section>
+				<section className="artists-preview">
+					<div className="search-title">
+						<h3>Song Graph</h3>
+						{/* <Link to="/search/artists"> <p>SEE ALL</p></Link> */}
+					</div>
+					<h2>Graph for each clicked song pops up <br />here when we click on each song</h2>
 
-                </section>
-            </DashboardDiv>
-        )
-    }
-    else if (recommendedIsChecked) {
-        return (
-            <DashboardDiv>
-                <SideNav {...props} setSongs={setSongs} recommendedIsChecked={recommendedIsChecked} setRecommendedIsChecked={setRecommendedIsChecked} setRecs={setRecs} setMainGraphUrl={setMainGraphUrl}></SideNav>
-                <section className="songs-preview">
-                    <div className="search-title">
-                        <h3>Songs</h3>
-                    </div>
-                    {recsArray}
-                </section>
-                <section className="artists-preview">
-                    <div className="search-title">
-                        <h3>Song Graph</h3>
-                    </div>
-                    <h2>Graph for each clicked song pops up <br />here when we click on each song</h2>
-                    <embed type="image/svg+xml" src={mainGraphUrl} width="500" height="500" />
+				</section>
+			</DashboardDiv>
+		)
+	}
+	else if (recommendedIsChecked) {
+		return (
+			<DashboardDiv>
+				<SideNav {...props} setSongs={setSongs} recommendedIsChecked={recommendedIsChecked} setRecommendedIsChecked={setRecommendedIsChecked} setRecs={setRecs} setMainGraphUrl={setMainGraphUrl}></SideNav>
+				<section className="songs-preview">
+					<div className="search-title">
+						<h3>Songs</h3>
+					</div>
+					{recsArray}
+				</section>
+				<section className="artists-preview">
+					<div className="search-title">
+						<h3>Song Graph</h3>
+					</div>
+					<h2>Graph for each clicked song pops up <br />here when we click on each song</h2>
+					<embed type="image/svg+xml" src={mainGraphUrl} width="500" height="500" />
 
-                </section>
-            </DashboardDiv>
-        )
-    }
+				</section>
+			</DashboardDiv>
+		)
+	}
 }
