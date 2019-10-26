@@ -58,16 +58,17 @@ export default function SongCard(props) {
 	}
 	const deleted = (event) => {
 		event.preventDefault();
+		axiosWithAuth().delete(`https://spotify-song-suggester-app.herokuapp.com/users/user/song/images/${props.info.trackid}`)
+			.then(res => {
+				console.log(res, "response from deleting a song")
+			})
+			.catch(err => {
+				console.log(err, "error from deleting a song")
+			})
 		setLiked(false);
-		// axios
-		// .delete()
-		// .then(res =>{
-		//     console.log(res, "response from liking a song")
-		// })
-		// .catch(err => {
-		//     console.log(err, "error from liking a song")
-		// })
 	}
+
+
 	if (props.info) {
 		return (
 			<SongCardMain>

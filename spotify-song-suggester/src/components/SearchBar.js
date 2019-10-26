@@ -59,14 +59,14 @@ export default function SearchBar(props) {
 		else if (recommendedIsChecked) {
 			// both axios are #DS endpoints here
 			axios
-				.get(`https://spotify-api-helper.herokuapp.com/auto_search/DReaI4d55IIaiD6P9/${value}`)
+				.get(`https://spotify-song-suggester-app.herokuapp.com/data/recs/search/${value}`)
 				.then(res => {
 					console.log("axios from CHECKED searchbar", res)
 					setRecs(res.data);
 					delayedRouter();
 					document.querySelector("#search").value = "";
 					axios
-						.get(`https://spotify-api-helper.herokuapp.com/graph_data/DReaI4d55IIaiD6P9/${res.data[0].id}`)
+						.get(`https://spotify-api-helper.herokuapp.com/graph_data/DReaI4d55IIaiD6P9/${res.data[0].trackid}`)
 						.then(results => {
 							console.log(res, "res from Checked search for the 5 way graph display uri")
 							setMainGraphUrl(results.data[0].graph_uri)
