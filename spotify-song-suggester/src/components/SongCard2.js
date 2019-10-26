@@ -8,9 +8,10 @@ import axiosWithAuth from '../utils/axiosWithAuth';
 // import liked from "./liked";
 
 const SongCardMain = styled.main`
-    width:100%;
+    width:50%;
     height:100px;
     display:flex;
+    flex-wrap:wrap;
     margin: 10px 0;
 
     .FavoriteIconDiv{
@@ -37,7 +38,7 @@ const SongCardMain = styled.main`
  
 `;
 
-export default function SongCard(props) {
+export default function SongCard2(props) {
     console.log(props.info, "props in song card");
     const [liked, setLiked] = useState(false);
 

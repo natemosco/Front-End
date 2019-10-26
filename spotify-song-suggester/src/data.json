@@ -1,0 +1,34 @@
+{
+    "home": {
+        "header_songs": "Your Current Average Prediction",
+        "body_songs": "Spotify Song Suggester uses the Spotify API along with Machine Learning techniques to recommend songs that users are likely to enjoy. Below are your top 5 picks based on the evaluation of liked songs displayed in the \"Favorite Songs\" section. As you you add/remove songs from favorites your homepage will reflect your current musical profile."
+    },
+    "sliders": {
+        "body_duration_ms": " The duration of the track",
+        "header_duration_ms": "duration_ms",
+        "body_key": " The estimated overall key of the track.",
+        "header_key": "key",
+        "body_mode": " Mode indicates the modality (major or minor) of a track, the type of scale from which its melodic content is derived.",
+        "header_mode": "mode",
+        "body_time_signature": " An estimated overall time signature of a track",
+        "header_time_signature": "time_signature",
+        "body_acousticness": " A confidence measure from 0.0 to 1.0 of whether the track is acoustic",
+        "header_acousticness": "acousticness",
+        "body_danceability": " Danceability describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity.",
+        "header_danceability": "danceability",
+        "body_energy": " Energy is a measurement that represents a perceptual measure of intensity and activity. Typically, energetic tracks feel fast, loud, and noisy. For example, death metal has high energy, while a Bach prelude scores low on the scale. Perceptual features contributing to this attribute include dynamic range, perceived loudness, timbre, onset rate, and general entropy.",
+        "header_energy": "energy",
+        "body_instrementalness": " Predicts whether a track contains no vocals. “Ooh” and “aah” sounds are treated as instrumental in this context. Rap or spoken word tracks are clearly “vocal”.",
+        "header_instrementalness": "instrementalness",
+        "body_liveness": " Detects the presence of an audience in the recording. Higher liveness values represent an increased probability that the track was performed live",
+        "header_liveness": "liveness",
+        "body_loudness": " Loudness values are averaged across the entire track and are useful for comparing relative loudness of tracks. Loudness is the quality of a sound that is the primary psychological correlate of physical strength (amplitude).",
+        "header_loudness": "loudness",
+        "body_speechiness": " Speechiness detects the presence of spoken words in a track.",
+        "header_speechiness": "speechiness",
+        "body_valence": " A measurement describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry).",
+        "header_valence": "valence",
+        "body_tempo": " In musical terminology, tempo is the speed or pace of a given piece and derives directly from the average beat duration.",
+        "header_tempo": "tempo"
+    }
+}

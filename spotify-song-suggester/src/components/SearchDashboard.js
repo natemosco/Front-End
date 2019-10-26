@@ -1,12 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from "react-router-dom";
+import React from 'react'
 import styled from "styled-components";
 
 import SongCard from "./SongCard";
-import ArtistCard from "./ArtistCard";
 import SideNav from "./SideNav";
-import axios from 'axios';
-// import liked from "./liked";
 
 const DashboardDiv = styled.div`
     width:100%;

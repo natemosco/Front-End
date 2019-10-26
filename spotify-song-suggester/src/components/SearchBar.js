@@ -55,7 +55,7 @@ export default function SearchBar(props) {
                 })
         }
         else if (recommendedIsChecked) {
-            // both axios are #DS endpoints here
+            // first axios is #DS endpoints
             axios
                 .get(`https://spotify-api-helper.herokuapp.com/auto_search/DReaI4d55IIaiD6P9/${value}`)
                 .then(res => {
@@ -64,7 +64,7 @@ export default function SearchBar(props) {
                     delayedRouter();
                     document.querySelector("#search").value = "";
                     axios
-                        .get(`https://spotify-api-helper.herokuapp.com/graph_data/DReaI4d55IIaiD6P9/${res.data[0].id}`)
+                        .get(`https://spotify-api-helper.herokuapp.com/graph_data/DReaI4d55IIaiD6P9/${res.data[0].trackid}`)
                         .then(results => {
                             console.log(res, "res from Checked search for the 5 way graph display uri")
                             setMainGraphUrl(results.data[0].graph_uri)
