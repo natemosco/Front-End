@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchBar from "./SearchBar";
 
-import { Route } from "react-router-dom";
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -14,8 +13,6 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -85,8 +82,21 @@ const useStyles = makeStyles(theme => ({
 
 export default function SideNav(props) {
     const classes = useStyles();
-    const theme = useTheme();
     const [open, setOpen] = React.useState(true);
+    const [title, setTitle] = useState("");
+
+    useEffect(() => {
+        let pathNames = {
+            "/home": "Home",
+            "/search": "Search Results",
+            "/saved-songs": "Favorites",
+            "/search-history": "History",
+            "/moods": "Moods",
+            "/export-to-spotify": "Export To Spotify"
+        }
+        setTitle(pathNames[props.match.path])
+
+    }, [props.match.path])
 
     const iconArray = [<HomeIcon />, <RadioIcon />, <LibraryMusicIcon />, <PageviewIcon />, <ImportExportIcon />]
     return (
@@ -109,8 +119,8 @@ export default function SideNav(props) {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap>
-                        Persistent drawer
-          </Typography>
+                        {title}
+                    </Typography>
                 </Toolbar>
             </AppBar>
             <Drawer
@@ -127,7 +137,7 @@ export default function SideNav(props) {
                 </div>
                 <Divider />
                 <List>
-                    {[{ name: 'Home', link: "/home" }, { name: 'Moods', link: "/moods" }, { name: 'Saved Songs', link: "/saved-songs" }, { name: 'Recent Searches', link: "/search-history" }, { name: 'Export to Spotify', link: "/export-to-spotify" }].map((text, index) => (
+                    {[{ name: 'Home', link: "/home" }, { name: 'Moods', link: "/moods" }, { name: 'Favorites', link: "/saved-songs" }, { name: 'Recent Searches', link: "/search-history" }, { name: 'Export to Spotify', link: "/export-to-spotify" }].map((text, index) => (
                         <Link to={text.link}>
                             <ListItem button key={text}>
                                 <ListItemIcon>{iconArray[index]}</ListItemIcon>

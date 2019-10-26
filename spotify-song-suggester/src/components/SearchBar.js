@@ -57,7 +57,7 @@ export default function SearchBar(props) {
 				})
 		}
 		else if (recommendedIsChecked) {
-			// both axios are #DS endpoints here
+			// Second axios is #DS endpoints to display data visualization from recommended songs
 			axios
 				.get(`https://spotify-song-suggester-app.herokuapp.com/data/recs/search/${value}`)
 				.then(res => {

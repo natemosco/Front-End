@@ -146,7 +146,7 @@ export default function FavListItem(props) {
 
             </FavListItemDiv>
             <MinorDiv>
-                <iframe id={props.trackid} className={(isOpen) ? "dodisplay" : "dontdisplay"} src={`https://embed.spotify.com/?uri=${props.fav.uri}`} width="400px" height="100px" />
+                <iframe id={props.trackid} title={props.trackid} className={(isOpen) ? "dodisplay" : "dontdisplay"} src={`https://embed.spotify.com/?uri=${props.fav.uri}`} width="400px" height="100px" />
             </MinorDiv>
             <GraphDiv className={(buttonOpen && graphID) ? "dodisplay" : "dontdisplay"}>
                 <embed type="image/svg+xml" src={graphID} width="600" height="600" />

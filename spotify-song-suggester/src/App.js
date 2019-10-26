@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { Route, Redirect, Link } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import axios from "axios";
-import jss from 'jss';
 
 
 import SignIn from './components/Login';
 import SignUp from "./components/SignUp";
-import SideNav from "./components/SideNav";
 import SearchDashboard from "./components/SearchDashboard";
-// import SongsSearchDisplay from './components/SongsSearchDisplay';
-// import ArtistsSearchDisplay from './components/ArtistsSearchDisplay';
-// import ArtistFullWork from "./components/ArtistsFullWork";
 import SavedSongs from "./components/SavedSongs";
 import SearchHistory from "./components/SearchHistory";
 import ExportToSpotify from "./components/ExportToSpotify";
@@ -43,6 +38,7 @@ function App() {
 	const [recs, setRecs] = useState([]);
 	const [mainGraphUrl, setMainGraphUrl] = useState("initialState")
 	const [recommendedIsChecked, setRecommendedIsChecked] = useState(false);
+	const [favoritesIdOnly, setFavoritesIdOnly] = useState([]);
 	const [favorites, setFavorites] = useState([
 		{ "artist": "Antonio Vivaldi", "id": "5N82c9RY2k4VeAel1pl5bJ", "large_image": "https://i.scdn.co/image/ab67616d0000b27325327b51212e48eecc13a39f", "med_image": "https://i.scdn.co/image/ab67616d00001e0225327b51212e48eecc13a39f", "small_image": "https://i.scdn.co/image/ab67616d0000485125327b51212e48eecc13a39f", "song_name": "Four Seasons op.8 (1987 Digital Remaster), Summer: Presto", "uri": "spotify:track:5N82c9RY2k4VeAel1pl5bJ" },
 		{ "artist": "Jacques Offenbach", "id": "1ntwYN2nT0Dl3c8lne15ii", "large_image": "https://i.scdn.co/image/ab67616d0000b273aaedcd61fea6d0764fbbdcfd", "med_image": "https://i.scdn.co/image/ab67616d00001e02aaedcd61fea6d0764fbbdcfd", "small_image": "https://i.scdn.co/image/ab67616d00004851aaedcd61fea6d0764fbbdcfd", "song_name": "Can Can", "uri": "spotify:track:1ntwYN2nT0Dl3c8lne15ii" },
@@ -56,18 +52,19 @@ function App() {
 		{ "artist": "Camila Cabello", "id": "5HwnezK198pJCEj1l2Adjy", "large_image": "https://i.scdn.co/image/ab67616d0000b2736eb0b9e73adcf04e4ed3eca4", "med_image": "https://i.scdn.co/image/ab67616d00001e026eb0b9e73adcf04e4ed3eca4", "small_image": "https://i.scdn.co/image/ab67616d000048516eb0b9e73adcf04e4ed3eca4", "song_name": "She Loves Control", "uri": "spotify:track:5HwnezK198pJCEj1l2Adjy" }
 	])
 
-	// useEffect(() => {
-	// 	axios
-	// 		.get("https:spotify-song-suggester-app.com/user/songs")
-	// 		.then(res => {
-	// 			console.log("axios response", res);
-	// 			// setFavorites(res.data);
-	// 		})
-	// 		.catch(err => {
-	// 			console.log("axios error", err);
-	// 		})
+	//   useEffect(() => {
+	//     axios
+	//       .get("https:spotify-song-suggester-app.com/user/songs")
+	//       .then(res => {
+	//         console.log("axios response", res);
+	//         // setFavorites(res.data);
+	//         // setFavoritesIdOnly(data.map((object) => (object.trackid)))
+	//       })
+	//       .catch(err => {
+	//         console.log("axios error", err);
+	//       })
 
-	// }, []);
+	//   }, []);
 
 
 	return (
@@ -76,7 +73,7 @@ function App() {
 			<Route exact path="/" render={(props) => <SignIn {...props} />}></Route>
 			<Route exact path="/signup" render={(props) => <SignUp {...props} />}></Route>
 
-			<Route path="/home" render={(props) => <ProtectedHome {...props} setSongs={setSongs} recommendedIsChecked={recommendedIsChecked} setRecommendedIsChecked={setRecommendedIsChecked} setRecs={setRecs} setMainGraphUrl={setMainGraphUrl} />}></Route>
+			<Route path="/home" render={(props) => <ProtectedHome {...props} favoritesIdOnly={favoritesIdOnly} setSongs={setSongs} recommendedIsChecked={recommendedIsChecked} setRecommendedIsChecked={setRecommendedIsChecked} setRecs={setRecs} setMainGraphUrl={setMainGraphUrl} />}></Route>
 			<Route exact path="/search" render={(props) => <ProtectedSearchDashboard {...props} songs={songs} setSongs={setSongs} recommendedIsChecked={recommendedIsChecked} setRecommendedIsChecked={setRecommendedIsChecked} setRecs={setRecs} recs={recs} mainGraphUrl={mainGraphUrl} setMainGraphUrl={setMainGraphUrl} />}></Route>
 			<Route path="/saved-songs" render={(props) => <ProtectedSavedSongs {...props} favorites={favorites} setSongs={setSongs} setRecommendedIsChecked={setRecommendedIsChecked} recommendedIsChecked={recommendedIsChecked} setRecs={setRecs} setMainGraphUrl={setMainGraphUrl} />}></Route>
 			<Route path="/search-history" render={(props) => <ProtectedSearchHistory {...props} setSongs={setSongs} recommendedIsChecked={recommendedIsChecked} setRecommendedIsChecked={setRecommendedIsChecked} setRecs={setRecs} setMainGraphUrl={setMainGraphUrl} />}></Route>

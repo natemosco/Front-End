@@ -3,7 +3,6 @@ import styled from "styled-components";
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
-import axios from 'axios';
 import axiosWithAuth from '../utils/axiosWithAuth';
 // import liked from "./liked";
 const SongCardMain = styled.main`
@@ -67,7 +66,6 @@ export default function SongCard(props) {
 			})
 		setLiked(false);
 	}
-
 
 	if (props.info) {
 		return (
