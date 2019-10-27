@@ -78,12 +78,10 @@ export default function Moods(props) {
             })
     }
 
-    const showHideModal = () => {
-        setVisible(!visible);
-    }
+
     let slidersArray = [];
     for (let prop in songProfile) {
-        slidersArray.push(<MoodSliders showHideModal={showHideModal} songProfile={songProfile} initialValue={songProfile[prop]} name={`${prop}`} className={`${prop}`}></MoodSliders>)
+        slidersArray.push(<MoodSliders visible={visible} setVisible={setVisible} setQualityName={setQualityName} songProfile={songProfile} initialValue={songProfile[prop]} name={`${prop}`} className={`${prop}`}></MoodSliders>)
     }
 
 
@@ -103,7 +101,7 @@ export default function Moods(props) {
                     {embedData.map((song, index) => <SongCard2 className="SongCard2" key={index} info={song}></SongCard2>)}
                 </section>
             </Div>
-            <Modal className={(visible) ? "dodisplayflex" : "dontdisplay"} setVisible={setVisible}></Modal>
+            <Modal className={(visible) ? "dodisplayflex" : "dontdisplay"} setVisible={setVisible} header={data.sliders[`header_${qualityName}`]} body={data.sliders[`body_${qualityName}`]}></Modal>
         </div>
     )
 }
