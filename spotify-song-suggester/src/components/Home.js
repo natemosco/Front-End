@@ -23,7 +23,7 @@ export default function Home(props) {
 	useEffect(() => {
 
 		axios
-			.get(`https://spotify-api-helper.herokuapp.com/playlist_mood_recs/DReaI4d55IIaiD6P9?playlist=${favoritesIdOnly}`)
+			.get(`https://spotify-api-helper.herokuapp.com/playlist_mood_recs/DReaI4d55IIaiD6P9?playlist=[${favoritesIdOnly}]`)
 			.then(res => {
 
 				setTopFive(res.data[2]);
