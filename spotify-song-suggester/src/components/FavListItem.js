@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 import styled from "styled-components";
 import axios from 'axios';
+import axiosWithAuth from "../utils/axiosWithAuth";
+
 
 const GraphDiv = styled.div`
     margin-left:240px;
@@ -33,7 +35,7 @@ const FavListItemDiv = styled.div`
     }
     }
     .slot1{
-    width:25%;
+    width:27%;
     text-align:left;
     }
     .slot2{
@@ -73,14 +75,11 @@ function Button(props) {
 }
 
 export default function FavListItem(props) {
-    let { setMainGraphUrl, setRecs } = props;
+    let { setUpdatedFavorites, updatedFavorites, setMainGraphUrl, setRecs } = props;
     const [isOpen, setIsOpen] = useState(false);
     const [hover, setHover] = useState(false);
     const [buttonOpen, setButtonOpen] = useState(false);
     const [graphID, setGraphID] = useState("")
-
-    console.log(props, "props in favlist item")
-
 
     const onHover = (event) => {
         event.preventDefault();
@@ -112,7 +111,7 @@ export default function FavListItem(props) {
     const showDetails = (event) => {
         event.preventDefault();
         let eventData = event.currentTarget;
-
+        console.dir(eventData, " !@#!@#!@#!#@")
         if (!buttonOpen) {
             setButtonOpen(!buttonOpen);
             // #DS Link
@@ -130,6 +129,18 @@ export default function FavListItem(props) {
         }
     }
 
+    const deleteHandler = (event) => {
+        event.preventDefault();
+        axiosWithAuth().delete(`https://spotify-song-suggester-app.herokuapp.com/users/user/song/images/${props.fav.trackid}`)
+            .then(res => {
+                console.log(res, "response from deleting a song")
+                setUpdatedFavorites = (!updatedFavorites)
+            })
+            .catch(err => {
+                console.log(err, "error from deleting a song")
+            })
+    }
+
 
     return (
         <>
@@ -141,8 +152,10 @@ export default function FavListItem(props) {
                 </div>
                 <span className="slot1">{props.fav.song_name}</span>
                 <span className="slot2">{props.fav.artist}</span>
-                <span className="slot3" id={props.fav.id} onClick={showSimilarSongs}><Button name={"Similar Songs"} /></span>
-                <span className="slot4" id={props.fav.id} onClick={showDetails}><Button name={"Track Details"} /></span>
+                <span className="slot3" id={props.fav.trackid} onClick={showSimilarSongs}><Button name={"Similar Songs"} /></span>
+                <span className="slot4" id={props.fav.trackid} onClick={showDetails}><Button name={"Track Details"} /></span>
+                <span className="slot4" id={props.fav.trackid} onClick={showDetails} onClick={deleteHandler}><Button name={"Delete"} /></span>
+
 
             </FavListItemDiv>
             <MinorDiv>

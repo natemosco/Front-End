@@ -7,6 +7,8 @@ import Modal from "./Modal";
 import data from "../data.json";
 
 import SongCard2 from './SongCard2'
+import Loading from "./Loading";
+
 
 const Div = styled.div`
     width:auto;
@@ -42,7 +44,7 @@ const StyledButton = styled.button`
 `;
 
 export default function Moods(props) {
-    let { setSongs, recommendedIsChecked, setRecommendedIsChecked, setRecs, setMainGraphUrl } = props;
+    let { favoritesIdOnly, setUpdatedFavorites, updatedFavorites, setSongs, recommendedIsChecked, setRecommendedIsChecked, setRecs, setMainGraphUrl } = props;
     const [songProfile, setSongProfile] = useState({})
     const [embedData, setEmbedData] = useState([]);
     const [graphUri, setGraphUri] = useState("")
@@ -51,11 +53,17 @@ export default function Moods(props) {
 
     useEffect(() => {
         axios
-            .get("https://spotify-api-helper.herokuapp.com/playlist_recs/DReaI4d55IIaiD6P9?playlist=[%271h2vCbRUWpWnYEgb2hfQbi%27,%27498ZVInMGDkmmNVpSWqHiZ%27,%273bidbhpOYeV4knp8AIu8Xn%27,%277B1QliUMZv7gSTUGAfMRRD%27,%272qYsSHsYkihWx043HVJQRV%27]")
+            .get(`https://spotify-api-helper.herokuapp.com/playlist_recs/DReaI4d55IIaiD6P9?playlist=${favoritesIdOnly}`)
             .then(res => {
                 console.log(res, "MOOOOOds ")
+                let modifiedObjectShape = res.data[2].map(objectTBR => {
+                    objectTBR.trackid = objectTBR.id
+                    objectTBR.imagesongid = 0
+                    delete objectTBR.id
+                    return objectTBR
+                })
                 setSongProfile(res.data[1])
-                setEmbedData(res.data[2])
+                setEmbedData(modifiedObjectShape)
                 setGraphUri(res.data[0].graph_uri)
             })
             .catch(err => {
@@ -63,14 +71,20 @@ export default function Moods(props) {
             })
     }, [])
     const sliderSubmit = () => {
-        let val = document.querySelectorAll(".makeStyles-root-153")
+        let val = document.querySelectorAll("#makeStyles-root-153")
         // val[index in array].childNodes[1].outerText  === value of slider
         axios
             .get(`https://spotify-api-helper.herokuapp.com/playlist_mood_recs/DReaI4d55IIaiD6P9?acousticness=${val[0].childNodes[1].outerText}&danceability=${val[1].childNodes[1].outerText}&duration_ms=${val[2].childNodes[1].outerText}&energy=${val[3].childNodes[1].outerText}&instrumentalness=${val[4].childNodes[1].outerText}&key=${val[5].childNodes[1].outerText}&liveness=${val[6].childNodes[1].outerText}&loudness=${val[7].childNodes[1].outerText}&mode=${val[8].childNodes[1].outerText}&speechiness=${val[9].childNodes[1].outerText}&tempo=${val[10].childNodes[1].outerText}&time_signature=${val[11].childNodes[1].outerText}&valence=${val[12].childNodes[1].outerText}&playlist=[%271h2vCbRUWpWnYEgb2hfQbi%27,%27498ZVInMGDkmmNVpSWqHiZ%27,%273bidbhpOYeV4knp8AIu8Xn%27,%277B1QliUMZv7gSTUGAfMRRD%27,%272qYsSHsYkihWx043HVJQRV%27]`)
             .then(res => {
+                let modifiedObjectShape2 = res.data[2].map(objectTBR => {
+                    objectTBR.trackid = objectTBR.id
+                    objectTBR.imagesongid = 0
+                    delete objectTBR.id
+                    return objectTBR
+                })
                 console.log(res, "button Res from moods")
                 setSongProfile(res.data[1])
-                setEmbedData(res.data[2])
+                setEmbedData(modifiedObjectShape2)
                 setGraphUri(res.data[0].graph_uri)
             })
             .catch(err => {
@@ -84,24 +98,38 @@ export default function Moods(props) {
         slidersArray.push(<MoodSliders visible={visible} setVisible={setVisible} setQualityName={setQualityName} songProfile={songProfile} initialValue={songProfile[prop]} name={`${prop}`} className={`${prop}`}></MoodSliders>)
     }
 
+    if (embedData.length == 0) {
+        return (
+            <div>
+                <SideNav {...props} setSongs={setSongs} recommendedIsChecked={recommendedIsChecked} setRecommendedIsChecked={setRecommendedIsChecked} setRecs={setRecs} setMainGraphUrl={setMainGraphUrl}></SideNav>
+                <Div>
+                    <Loading></Loading>
+                    <section className="sliders">
+                        <h2>Loading Your Average Song Mood</h2>
+                    </section>
+                </Div>
+            </div>
+        )
 
-    return (
-        <div>
-            <SideNav {...props} setSongs={setSongs} recommendedIsChecked={recommendedIsChecked} setRecommendedIsChecked={setRecommendedIsChecked} setRecs={setRecs} setMainGraphUrl={setMainGraphUrl}></SideNav>
-            <Div>
+    } else {
+        return (
+            <div>
+                <SideNav {...props} setSongs={setSongs} recommendedIsChecked={recommendedIsChecked} setRecommendedIsChecked={setRecommendedIsChecked} setRecs={setRecs} setMainGraphUrl={setMainGraphUrl}></SideNav>
+                <Div>
 
-                <section className="sliders">
-                    {slidersArray}
-                    <StyledButton onClick={sliderSubmit}>Submit Slider Values</StyledButton>
-                </section>
-                <section id="GraphWhiteSpace" className="graph">
-                    <embed type="image/svg+xml" src={graphUri} width="700" height="700" />
-                </section>
-                <section className="songs">
-                    {embedData.map((song, index) => <SongCard2 className="SongCard2" key={index} info={song}></SongCard2>)}
-                </section>
-            </Div>
-            <Modal className={(visible) ? "dodisplayflex" : "dontdisplay"} setVisible={setVisible} header={data.sliders[`header_${qualityName}`]} body={data.sliders[`body_${qualityName}`]}></Modal>
-        </div>
-    )
+                    <section className="sliders">
+                        {slidersArray}
+                        <StyledButton onClick={sliderSubmit}>Submit Slider Values</StyledButton>
+                    </section>
+                    <section id="GraphWhiteSpace" className="graph">
+                        <embed type="image/svg+xml" src={graphUri} width="700" height="700" />
+                    </section>
+                    <section className="songs">
+                        {embedData.map((song, index) => <SongCard2 className="SongCard2" setUpdatedFavorites={setUpdatedFavorites} updatedFavorites={updatedFavorites} key={index} info={song}></SongCard2>)}
+                    </section>
+                </Div>
+                <Modal className={(visible) ? "dodisplayflex" : "dontdisplay"} setVisible={setVisible} header={data.sliders[`header_${qualityName}`]} body={data.sliders[`body_${qualityName}`]}></Modal>
+            </div>
+        )
+    }
 }
