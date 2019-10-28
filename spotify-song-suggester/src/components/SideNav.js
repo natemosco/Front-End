@@ -132,12 +132,13 @@ export default function SideNav(props) {
                     paper: classes.drawerPaper,
                 }}
             >
-                <div className={classes.drawerHeader}>
+                <div className={classes.drawerHeader} id="search-bar-area">
                     <SearchBar {...props} setSongs={props.setSongs} recommendedIsChecked={props.recommendedIsChecked} setRecommendedIsChecked={props.setRecommendedIsChecked} setRecs={props.setRecs} setMainGraphUrl={props.setMainGraphUrl}></SearchBar>
                 </div>
                 <Divider />
                 <List>
-                    {[{ name: 'Home', link: "/home" }, { name: 'Moods', link: "/moods" }, { name: 'Favorites', link: "/saved-songs" }, { name: 'Recent Searches', link: "/search-history" }, { name: 'Export to Spotify', link: "/export-to-spotify" }].map((text, index) => (
+                    {/* {[{ name: 'Home', link: "/home" }, { name: 'Moods', link: "/moods" }, { name: 'Favorites', link: "/saved-songs" }, { name: 'Recent Searches', link: "/search-history" }, { name: 'Export to Spotify', link: "/export-to-spotify" }].map((text, index) => ( */}
+                    {[{ name: 'Home', link: "/home" }, { name: 'Moods', link: "/moods" }, { name: 'Favorites', link: "/saved-songs" }].map((text, index) => (
                         <Link to={text.link}>
                             <ListItem button key={text}>
                                 <ListItemIcon>{iconArray[index]}</ListItemIcon>

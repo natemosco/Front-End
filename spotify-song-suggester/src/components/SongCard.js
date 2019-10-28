@@ -35,18 +35,22 @@ const SongCardMain = styled.main`
  
 `;
 export default function SongCard(props) {
+	let { setUpdatedFavorites, updatedFavorites } = props
 	console.log(props.info.info, "props in song card info");
 	console.log(props, "props in song card");
 	const [liked, setLiked] = useState(false);
+
 	const addToLiked = (event) => {
 		event.preventDefault();
 		if (!liked) {
+			console.log(props.info, "props.info from liking a card !!!!!!!!!!!!!!!!!")
 			axiosWithAuth()
 				.post(
 					'https://spotify-song-suggester-app.herokuapp.com/songs/song/images', props.info)
 				.then(res => {
 					console.log(res, "response from liking a song")
 					axiosWithAuth().post(`https://spotify-song-suggester-app.herokuapp.com/users/user/song/images/${props.info.trackid}`)
+					setUpdatedFavorites(!updatedFavorites)
 				})
 				.catch(err => {
 					console.log(err, "error from liking a song")
@@ -55,11 +59,14 @@ export default function SongCard(props) {
 		}
 		setLiked(true);
 	}
+
+
 	const deleted = (event) => {
 		event.preventDefault();
 		axiosWithAuth().delete(`https://spotify-song-suggester-app.herokuapp.com/users/user/song/images/${props.info.trackid}`)
 			.then(res => {
 				console.log(res, "response from deleting a song")
+				setUpdatedFavorites(!updatedFavorites)
 			})
 			.catch(err => {
 				console.log(err, "error from deleting a song")

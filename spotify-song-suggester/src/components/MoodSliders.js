@@ -33,10 +33,14 @@ export default function MoodSliders(props) {
             setValue(2.0);
         }
     };
+    const showHideModal = (event) => {
+        props.setVisible(!props.visible);
+        props.setQualityName(props.name);
+    }
 
     return (
         <div id="makeStyles-root-153" className={classes.root}>
-            <Typography className="input-slider" gutterBottom id="pointerFinger" onClick={props.showHideModal}>
+            <Typography className="input-slider" gutterBottom id="pointerFinger" onClick={showHideModal}>
                 {props.name}
             </Typography>
 
