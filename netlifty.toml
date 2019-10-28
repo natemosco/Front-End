@@ -1,4 +1,0 @@
-[build]
-base="spotify-song-suggester/"
-publish="build/"
-command = "yarn build"
