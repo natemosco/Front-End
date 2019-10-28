@@ -1,4 +1,0 @@
-[public]
-base="spotify-song-suggester/"
-publish="public/"
-command = "npm build"
